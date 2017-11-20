@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import JWT
 class ViewController: UIViewController {
 
     //MARK: Properties
@@ -49,10 +49,21 @@ class ViewController: UIViewController {
     }
     
     @IBAction func login_button(_ sender: UIButton) {
-        let username = username_textfield.text
-        let password = password_textfield.text
         
-        self.session.set(username, forKey: "username")
+        let username = username_textfield.text
+        let password = username_textfield.text
+        
+        if((username?.isEmpty)! || (password?.isEmpty)!)
+        {
+            let alert = UIAlertController(title: "Alert", message: "Username atau password tidak boleh kosong", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+        
+        let token = JWT.encode(claims: ["username": username, "password": password], algorithm: .hs256("secret".data(using: .utf8)!))
+        
+        self.session.set(token, forKey: "token")
+
         self.performSegue(withIdentifier: "dashboard_segue", sender: self)
     }
     

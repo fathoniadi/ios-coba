@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import JWT
 
 class DashboardController: UIViewController {
 
@@ -14,10 +15,17 @@ class DashboardController: UIViewController {
     
     @IBOutlet weak var hello_label: UILabel!
     @IBOutlet weak var username_label: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        let token = self.session.string(forKey: "token")!
+        do {
+            let claims: ClaimSet = try JWT.decode(token, algorithm: .hs256("secret".data(using: .utf8)!))
+            username_label.text = claims["username"] as? String
+        } catch {
+            self.performSegue(withIdentifier: "unWindToVC", sender: self)
+        }
         
-        self.username_label.text = session.string(forKey: "username")
         // Do any additional setup after loading the view.
     }
 
@@ -31,13 +39,9 @@ class DashboardController: UIViewController {
         let alertView = UIAlertController(title: "Exit?", message: "Are you sure, you want to exit?", preferredStyle: .actionSheet)
         
         let deleteAction = UIAlertAction (title: "Exit", style: .destructive ) { alertAction in
-            
-            self.performSegue(withIdentifier: "unWindToVC", sender: self)
             let domain = Bundle.main.bundleIdentifier!
-            
-            print(domain)
-            
             UserDefaults.standard.removePersistentDomain(forName: domain)
+            self.performSegue(withIdentifier: "unWindToVC", sender: self)
         }
         
         let cancelAction = UIAlertAction (title: "Cancel", style: .cancel ) {  alertAction in

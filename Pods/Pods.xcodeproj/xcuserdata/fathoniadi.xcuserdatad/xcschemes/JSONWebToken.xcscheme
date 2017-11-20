@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8046849C196EECEBAD3EDD9AF637949C"
-               BuildableName = "Pods_change_view.framework"
-               BlueprintName = "Pods-change_view"
+               BlueprintIdentifier = "04ACCD651C30E7B6FE864F0FFE983BA5"
+               BuildableName = "JWT.framework"
+               BlueprintName = "JSONWebToken"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -47,9 +47,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8046849C196EECEBAD3EDD9AF637949C"
-            BuildableName = "Pods_change_view.framework"
-            BlueprintName = "Pods-change_view"
+            BlueprintIdentifier = "04ACCD651C30E7B6FE864F0FFE983BA5"
+            BuildableName = "JWT.framework"
+            BlueprintName = "JSONWebToken"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
