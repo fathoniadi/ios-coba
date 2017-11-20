@@ -1,0 +1,6 @@
+framework module Pods_change_viewTests {
+  umbrella header "Pods-change_viewTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
